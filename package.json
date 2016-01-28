@@ -1,6 +1,6 @@
 {
   "name": "archive.is",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Unofficial Node.js API for archive.is",
   "keywords": [
     "archive.is",

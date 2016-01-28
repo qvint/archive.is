@@ -2,6 +2,10 @@
 
 Unofficial Node.js API for [archive.is][1]
 
+[![Build Status](https://travis-ci.org/qvint/archive.is.svg?branch=master)](https://travis-ci.org/qvint/archive.is)
+[![Dependency Status](https://david-dm.org/qvint/archive.is.svg)](https://david-dm.org/qvint/archive.is)
+[![devDependency Status](https://david-dm.org/qvint/archive.is/dev-status.svg)](https://david-dm.org/qvint/archive.is#info=devDependencies)
+
 ## Install
 
 ```bash
@@ -21,7 +25,7 @@ archive.timemap('https://www.kernel.org').then(function (timemap) {
 });
 
 // Take a new snapshot of https://www.kernel.org
-archive.save('https://www.kernel.org', { anyway: true }).then(function (result) {
+archive.save('https://www.kernel.org').then(function (result) {
   console.log(result.shortUrl); // https://archive.is/EJoGi
 });
 ```
