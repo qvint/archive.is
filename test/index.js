@@ -2,6 +2,7 @@
 
 var archive = require('../lib');
 var assert = require('assert');
+var deepEqual = require('deep-equal');
 var nock = require('nock');
 var parseTimemap = require('../lib/timemap');
 var promise = require('../lib/promise');
@@ -154,11 +155,11 @@ suite('archive.is', function () {
         });
 
       return archive.save('https://www.kernel.org').then(function (result) {
-        assert.deepStrictEqual(result, {
+        assert(deepEqual(result, {
           id: 'EJoGi',
           shortUrl: 'https://archive.is/EJoGi',
           alreadyExists: true
-        });
+        }, { strict: true }));
       });
     });
 
@@ -172,11 +173,11 @@ suite('archive.is', function () {
         });
 
       return archive.save('https://www.kernel.org').then(function (result) {
-        assert.deepStrictEqual(result, {
+        assert(deepEqual(result, {
           id: 'EJoGi',
           shortUrl: 'https://archive.is/EJoGi',
           alreadyExists: false
-        });
+        }, { strict: true }));
       });
     });
 
@@ -191,11 +192,11 @@ suite('archive.is', function () {
         });
 
       return archive.save('https://www.kernel.org', { anyway: true }).then(function (result) {
-        assert.deepStrictEqual(result, {
+        assert(deepEqual(result, {
           id: 'EJoGi',
           shortUrl: 'https://archive.is/EJoGi',
           alreadyExists: false
-        });
+        }, { strict: true }));
       });
     });
   });
@@ -265,11 +266,6 @@ function didntReject () {
 
 function strict (expected) {
   return function (body) {
-    try {
-      assert.deepStrictEqual(body, expected);
-      return true;
-    } catch (error) {
-      return false;
-    }
+    return deepEqual(body, expected, { strict: true });
   }
 }
